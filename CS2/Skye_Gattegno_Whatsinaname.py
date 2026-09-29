@@ -12,15 +12,19 @@ import random
 # Bugs: N/A                                            #
 ########################################################
 
-
-def get_first_name(data):
-     output = data[0]
-     return output
-
 def get_last_name(name):
+     '''
+    Find which word in the user's answer is the last name
+
+    Parameters: name (user's inputted name)
+
+    Returns: returns the last word of the user's input as the last name
+    '''
     names = name.split(" ")
+    #.split splits the string at the space
     name_length = len(names)
     last = name_length -1
+    #find index number of last word
     return names[last]
 
 def count_vowels(word):
@@ -64,10 +68,13 @@ def get_initials(fullname):
     Returns: return character 0 of each word and print initials
     '''
     names = fullname.split()
+    #split fullname at space
     initials = ""
     for name in names:
         initials += name[0]
+          #initials are at index 0 of each word
     print(f'You intials are {initials}')
+     #display message
 
 def reverse(word):
     '''
@@ -78,38 +85,61 @@ def reverse(word):
     Returns: return word reversed in order
     '''
     pos = len(word)-1
+    #find index of last character
     while (pos >= 0):
+        #while the position is greater than or equal to the index of 0
         print (word[pos])
         pos = pos-1
 
 def make_uppercase(word):
+     '''
+    Take a word/name and make it uppercase
+
+    Parameters: word (user's input)
+
+    Returns: return each letter as uppercase
+    '''
      letter = ""
      for char in word:
         if 'a' <= char <= 'z':
             upper_letter = chr(ord(char) - 32)
+               #chr convert integer into string
+                 #ord take a character as an argument and returns an integer
             letter += upper_letter
         else:
             letter += char
     return letter
 
 def scramble(name):
-    '''
+     '''
     Scramble the letters of the user's inputted name
 
-    Parameters
+    Parameters: name (user's inputted name)
+
+    Returns: return scrambled name as new_list and join letters to print word
     '''
     name_list = list(name)
     new_list = []
 
     while len(name_list) > 0:
         r = random.randrange(0,len(name_list))
+             #randrange returns a randomly selected int from within a specific range
         new_list.append(name_list[r])
         del name_list[r]
+         #del = delete
+return "".join(new_list)
        
 
 
 
 def has_hyphen(word):
+     '''
+    Take a word and check if it has a hyphen
+
+    Parameters: word (user's input)
+
+    Returns: return a boolean in the form of true or false stating whether it is true that the word has a hyphen or false
+    '''
     for letter in word:
         if letter == "-":
             return True
