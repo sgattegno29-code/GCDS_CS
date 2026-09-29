@@ -83,10 +83,14 @@ def reverse(word):
         pos = pos-1
 
 def make_uppercase(word):
-    print(word)
-
-def make_lowercase(word):
-    print(word)
+     letter = ""
+     for char in word:
+        if 'a' <= char <= 'z':
+            upper_letter = chr(ord(char) - 32)
+            letter += upper_letter
+        else:
+            letter += char
+    return letter
 
 def scramble(name):
     '''
@@ -128,7 +132,7 @@ def main():
     8. Reverse word
     8a. Reverse name
     9. Make all caps
-    10. Make all lowercase
+    10. Make name all caps
     11. Scramble a word
     11a. Scramble your name 
     12. Check for hyphen'''
@@ -168,10 +172,9 @@ def main():
             output = reverse(name)
         elif choice == "9":
             word = input("Enter a word to make it all caps: ")
-            make_uppercase(word.upper())
+            print(make_uppercase(word))
         elif choice == "10":
-            word = input("Enter a word to make it all lowercase: ")
-            make_lowercase(word.lower())
+            print(make_uppercase(name))
         elif choice == "11":
             word = input("Enter the word you would like to scramble: ")
             print(scramble(word))
