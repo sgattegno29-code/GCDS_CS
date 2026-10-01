@@ -9,7 +9,8 @@ import random
 # and the functions are made to play around            #
 # with words, or your name, which you                  #
 # enter at the start of this program                   #
-# Bugs: N/A                                            #
+# Bugs: Code breaks down if you check for middle       #
+# name with only one name                              #
 ########################################################
 
 def get_last_name(name):
@@ -37,10 +38,14 @@ def count_vowels(word):
     '''
     vowels = 'aeiouAEIOU'
     count = 0
+     #start vowel count at 0
 
     for char in word:
+         #for the characters in the word
         if char in vowels:
+             #if the characters coorespond with the vowel list
             count += 1
+             #add to vowel count
     return count
 
 def count_consonants(word):
@@ -89,6 +94,7 @@ def reverse(word):
     while (pos >= 0):
         #while the position is greater than or equal to the index of 0
         print (word[pos])
+         #display message
         pos = pos-1
 
 def make_uppercase(word):
@@ -101,7 +107,9 @@ def make_uppercase(word):
     '''
      letter = ""
      for char in word:
+          #for characters un word
         if 'a' <= char <= 'z':
+             #if characters are a or z or between a or z
             upper_letter = chr(ord(char) - 32)
                #chr convert integer into string
                  #ord take a character as an argument and returns an integer
@@ -144,6 +152,7 @@ def has_hyphen(word):
         if letter == "-":
             return True
     return False
+             #return true for hyphen and return false for no hyphen
 
 def main():
     name = input ('Enter your full name: ')
