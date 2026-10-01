@@ -10,8 +10,9 @@ import random
 # with words, or your name, which you                  #
 # enter at the start of this program                   #
 # Bugs: Code breaks down if you check for middle       #
-# name with only one name and cannot do multiple       #
-# middle names                                         #
+# name with only one name, cannot do multiple          #
+# middle names, and returns whatever the last word is  #
+# as last name                                         #
 ########################################################
 
 def get_last_name(name):
