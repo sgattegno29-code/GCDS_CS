@@ -1,0 +1,160 @@
+import random
+
+def display_board(board):
+    for row in range (3):
+        print(board[row][0], "|", board[row][1], "|", board[row][2])
+        if row < 2:
+             print("-----------")
+
+def go_first():
+            number = random.randint(1, 10)
+            #generate a number between 1 and 10
+            while True:
+                try:
+                    player1 = int(input("Player 1, type a number between 1 and 10: "))
+                    #ask player 1 to pick a number between 1 and 10
+                    if player1 >= 1 and player1 <= 10:
+                        #check if number is between 1 and 10
+                        break
+                    else:
+                        print("Invalid Response. Please choose a number between 1 and 10")
+                except ValueError:
+                    #if input is not a valid whole number
+                    print("Invalid Response. Please enter a whole number. ")
+            
+            while True:
+                try:
+                    player2 = int(input("Player 2, type a number between 1 and 10: "))
+                    #ask player 2 to pick a number between 1 and 10
+                    if player2 >= 1 and player2 <= 10:
+                        #check if number is between 1 and 10
+                          break
+                    else:
+                          print("Invalid Response. Please choose a number between 1 and 10")
+                except ValueError:
+                      #if input is not a valid whole number
+                      print("Invalid Response. Please enter a whole number. ")
+            dif1 = player1 - number
+            #find difference betwen player 1's number, player 2's number, and the random number
+            if dif1 < 0:
+                  dif1 = dif1 * -1
+                  #if the difference is negative make it a positive difference
+            dif2 = player2 - number
+            if dif2 < 0:
+                  #if the difference is negative make it a positive difference
+                  dif2 = dif2 * -1
+            if dif1 < dif2:
+                return number, "Player 1"
+            elif dif2 < dif1:
+                return number, "Player 2"
+            #check for each player who is closest to random number
+            else:
+                  return number, random.choice(["Player 1", "Player 2"])
+
+def get_player_move(board, move):
+    # Ensure the move is just a single valid board string character
+            if move not in range(1,10):
+                return 0  
+            if move == 1: row, col = 0, 0
+            elif move == 2: row, col = 0, 1
+            elif move == 3: row, col = 0, 2
+            elif move == 4: row, col = 1, 0
+            elif move == 5: row, col = 1, 1
+            elif move == 6: row, col = 1, 2
+            elif move == 7: row, col = 2, 0
+            elif move == 8: row, col = 2, 1
+            elif move == 9: row, col = 2, 2 
+            if board[row][col] in ["x", "o"]:
+                 return "0"
+            else:
+                 return move
+                    
+def check_winner(board):
+    for row in board:
+          if row[0] == row[1] == row[2] and row[0] in ["x", "o"]:
+                #check row for 3 of the same
+                return row[0]
+    for col in range (3):
+          if board[0][col] == board[1][col] == board[2][col] and board[0][col] in ["x", "o"]:
+                #check column for 3 of the same
+                return board[0][col]
+
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] in ["x", "o"]:
+          #check diagonal for 3 of the same
+          return board[0][0]
+    if board[0][2] == board [1][1] == board [2][0] and board[0][2] in ["x", "o"]:
+          #check other diagnal for 3 of the same
+          return board[0][2]
+    return "No winner"
+     
+    
+def main():
+    name1 = input('Player 1 enter your name: ')
+    print (f'Hi {name1}, you are player 1 and will be x')
+
+    name2 = input('Player 2 enter your name: ')
+    print(f'Hi {name2}, you are player 2 and will be o')
+    print(f'The matchup is Player 1: {name1} vs Player 2: {name2}')
+
+    board = [
+         ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"]
+        ]
+    
+    display_board(board)
+    number, first_player = go_first()
+    #get random number to decide who goes first
+    print("The number was: ", number)
+    print(first_player, "goes first")
+
+    if first_player == "Player 1":
+         player = "x"
+         player_name = name1
+    else:
+         player = "o"
+         player_name = name2
+    turn = 0 
+    while turn <= 9:
+        print(f'It is {player_name} turn')
+
+        while True:
+                move = int(input("Type the number that corresponds to the spot you would like to take: "))
+                move = get_player_move(board, move)
+                if move == "0":
+                     print("Invalid response, try again. ")
+                else:
+                     break
+        if move == 1: board[0][0] = player
+        elif move == 2: board[0][1] = player
+        elif move == 3: board[0][2] = player
+        elif move == 4: board[1][0] = player
+        elif move == 5: board[1][1] = player
+        elif move == 6: board[1][2] = player
+        elif move == 7: board[2][0] = player
+        elif move == 8: board[2][1] = player
+        elif move == 9: board[2][2] = player
+
+        display_board(board)
+                
+        result = check_winner(board)
+
+        if result == "x":
+            print(f'{name1} wins!')
+            break
+            
+        elif result == "o":
+            print(f'{name2} wins!')
+            break
+            
+        turn = turn + 1
+        if turn == 9:
+             print("It is a tie")
+        else:
+            if player == "x":
+                  player = "o"
+                  player_name = name2
+            else:
+                player = "x"
+                player_name = name1
+main()
