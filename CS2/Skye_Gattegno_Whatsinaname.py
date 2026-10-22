@@ -9,14 +9,11 @@ import random
 # and the functions are made to play around            #
 # with words, or your name, which you                  #
 # enter at the start of this program                   #
-# Bugs: Code breaks down if you check for middle       #
-# name with only one name, cannot do multiple          #
-# middle names, and returns whatever the last word is  #
-# as last name                                         #
+# Bugs: N/A                                            #
 ########################################################
 
 def get_last_name(name):
-     '''
+    '''
     Find which word in the user's answer is the last name
 
     Parameters: name (user's inputted name)
@@ -40,14 +37,10 @@ def count_vowels(word):
     '''
     vowels = 'aeiouAEIOU'
     count = 0
-     #start vowel count at 0
 
     for char in word:
-         #for the characters in the word
         if char in vowels:
-             #if the characters coorespond with the vowel list
             count += 1
-             #add to vowel count
     return count
 
 def count_consonants(word):
@@ -79,9 +72,9 @@ def get_initials(fullname):
     initials = ""
     for name in names:
         initials += name[0]
-          #initials are at index 0 of each word
+        #initials are at index 0 of each word
     print(f'You intials are {initials}')
-     #display message
+    #display message
 
 def reverse(word):
     '''
@@ -96,32 +89,29 @@ def reverse(word):
     while (pos >= 0):
         #while the position is greater than or equal to the index of 0
         print (word[pos])
-         #display message
         pos = pos-1
 
 def make_uppercase(word):
-     '''
+    '''
     Take a word/name and make it uppercase
 
     Parameters: word (user's input)
 
     Returns: return each letter as uppercase
     '''
-     letter = ""
-     for char in word:
-          #for characters un word
+    letter = ""
+    for char in word:
         if 'a' <= char <= 'z':
-             #if characters are a or z or between a or z
             upper_letter = chr(ord(char) - 32)
-               #chr convert integer into string
-                 #ord take a character as an argument and returns an integer
+            #chr convert integer into string
+            #ord take a character as an argument and returns an integer
             letter += upper_letter
         else:
             letter += char
     return letter
 
 def scramble(name):
-     '''
+    '''
     Scramble the letters of the user's inputted name
 
     Parameters: name (user's inputted name)
@@ -133,17 +123,20 @@ def scramble(name):
 
     while len(name_list) > 0:
         r = random.randrange(0,len(name_list))
-             #randrange returns a randomly selected int from within a specific range
+        #randrange returns a randomly selected int from within a specific range
         new_list.append(name_list[r])
         del name_list[r]
-         #del = delete
-return "".join(new_list)
+        #del = delete
+
+
+    return "".join(new_list)
+    #merge the list and return the list with letters merged
        
 
 
 
 def has_hyphen(word):
-     '''
+    '''
     Take a word and check if it has a hyphen
 
     Parameters: word (user's input)
@@ -154,7 +147,6 @@ def has_hyphen(word):
         if letter == "-":
             return True
     return False
-             #return true for hyphen and return false for no hyphen
 
 def main():
     name = input ('Enter your full name: ')
@@ -180,6 +172,7 @@ def main():
     print(options)
     while True:
         choice = input ("Select what you would like to do: Enter one of the options listed above, enter 'quit' to leave, or enter 'options' to see all the options again: ")
+        #display message
         if choice == "quit":
             break
         elif choice == "options":
@@ -211,6 +204,7 @@ def main():
             output = reverse(word)
         elif choice == "8a":
             output = reverse(name)
+            #print reversed name
         elif choice == "9":
             word = input("Enter a word to make it all caps: ")
             print(make_uppercase(word))
